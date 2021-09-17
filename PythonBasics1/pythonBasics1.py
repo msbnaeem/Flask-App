@@ -48,5 +48,5 @@ def fizz_buzz(num):
   elif num % 3 == 0:
     return "Fizz"
   elif num % 5 == 0:
-    return "Buzz"
+    return "Buzz."
 
