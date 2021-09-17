@@ -23,9 +23,6 @@ def odd_range(num1, num2):
 # otherwise return False
 def has_lower_case(s):
   # YOUR CODE HERE
-  # for char in s:
-  #   if lowerString(s) == True:
-  #     return True
   for char in s:
     x = s.lower()
     if s.lower() == True:
