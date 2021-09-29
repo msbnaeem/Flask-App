@@ -14,8 +14,12 @@ import re
 # Note: Be sure to use RegEx!
 def starts_with_non_number(s):
   # YOUR CODE HERE
+  match = re.match('[^\d]', s)
 
-  return
+  if match:
+    return True
+  else:
+    return False
 
 # # Part B. multiple_words
 # Define a function multiple_words(s) that takes a string and returns true
