@@ -29,8 +29,12 @@ def starts_with_non_number(s):
 # with at least one character on either side!
 def multiple_words(s):
   # YOUR CODE HERE
+  match = re.search('.\s.', s)
 
-  return
+  if match:
+    return True
+  else:
+    return False
 
 
 # Part C. reserved_us_tld
