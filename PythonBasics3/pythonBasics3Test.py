@@ -18,6 +18,14 @@ class TestPythonBasicsOne(unittest.TestCase):
         self.assertEqual(pythonBasics3.starts_with_non_number("# is used to comment a line in Python"), True)
 
         # Please add three more test cases following the order above
+        # Tests below this comment are made by me!
+        self.assertEqual(pythonBasics3.starts_with_non_number("I am a junior in 2021"), True)
+
+        self.assertEqual(pythonBasics3.starts_with_non_number("2021 is the beginning of my junior year"), False)
+
+        self.assertEqual(pythonBasics3.starts_with_non_number(" 2022 will be my graduation  year Hopefully"), True)
+
+
 
 #Test case for multiple_words
     def test_multiple_words(self):
@@ -26,13 +34,20 @@ class TestPythonBasicsOne(unittest.TestCase):
 
         self.assertEqual(pythonBasics3.multiple_words(" "), False)
 
-        self.assertEqual(pythonBasics3.multiple_words("Different\\twhitespace"), False)
+        self.assertEqual(pythonBasics3.multiple_words("Different\twhitespace"), True)
 
         self.assertEqual(pythonBasics3.multiple_words("It's-all-one-word"), False)
 
         self.assertEqual(pythonBasics3.multiple_words(" one-sided? "), False)
 
-        # Please add three more test cases following the order above
+         # Please add three more test cases following the order above
+         # Tests below this comment are made by me!
+        self.assertEqual(pythonBasics3.multiple_words("My name is Mohammad"), True)
+
+        self.assertEqual(pythonBasics3.multiple_words("This test case is True this way"), True)
+
+        self.assertEqual(pythonBasics3.multiple_words(" And-this-one-is-False "), False)
+
 
 
 #Test case for reserved_us_tld
