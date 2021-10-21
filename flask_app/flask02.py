@@ -10,12 +10,12 @@ app = Flask(__name__)     # create an app
 # In this case it makes it so anyone going to "your-url/" makes this function
 # get called. What it returns is what is shown as the web page
 @app.route('/')
-@app.route('/notes')
-def index():
+@app.route('/notes/<note_id>')
+def get_note(note_id):
     notes = {1:{'title': 'First note', 'text': 'This is my first note', 'date': '10-1-2020'},
              2: {'title': 'Second note', 'text': 'This is my second note', 'date': '10-2-2020'}}
     # a_user = {'name':'Mohammad', 'email':'mogli@uncc.edu'}
-    return render_template('notes.html', notes = notes)
+    return render_template('note.html', note = notes[int(note_id)])
     # return "Welcome, Notes App User!"
 
 
