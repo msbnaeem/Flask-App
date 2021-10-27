@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="UNCC Notes App">
-        <title>UNCC Notes App - View your Notes</title>
+        <title>UNCC Notes App - View your Note</title>
         <!-- styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     </head>
@@ -14,20 +14,21 @@
         <a href="{{url_for('index') }}"> Home</a> ||
         <a href="{{url_for('get_notes') }}"> My Notes</a>
     </nav>
-    
-        <h1>Listing notes</h1>
+        <h1>Note details</h1>
+
+
 
         <table>
             <tr>
                 <th>Title</th>
+                <th>Text</th>
                 <th>Date</th>
             </tr>
-            {% for key, value in notes.items() %}
             <tr>
-                <td><a href="notes/{{key}}">{{ value.title }}</td>
-                <td>{{ value.date }}</td>
+                <td>{{ note.title }}</td>
+                <td>{{ note.text }}</td>
+                <td>{{ note.date }}</td>
             </tr>
-            {% endfor %}
         </table>
     </body>
 </html>
