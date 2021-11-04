@@ -7,8 +7,8 @@ from flask import render_template
 from flask import request
 from flask import redirect, url_for
 from database import db
-from models import Note as Note
-from models import User as User
+from models import Note
+from models import User
 
 app = Flask(__name__)  # create an app
 
@@ -16,23 +16,19 @@ app = Flask(__name__)  # create an app
 # In this case it makes it so anyone going to "your-url/" makes this function
 # get called. What it returns is what is shown as the web page
 
-# notes = {1: {'title': 'First note', 'text': 'This is my first note', 'date': '10-1-2020'},
-#          2: {'title': 'Second note', 'text': 'This is my second note', 'date': '10-2-2020'},
-#          3: {'title': 'Third note', 'text': 'This is my third note', 'date': '10-3-2020'}
-#          }
 
 
 @app.route('/')
 @app.route('/index')
 def index():
-    a_user = db.session.query(User).filter_by(email='mnaeem1@uncc.edu')
+    a_user = db.session.query(User).filter_by(email='mnaeem1@uncc.edu').one()
     return render_template("index.html", user=a_user)
 
 
 @app.route('/notes')
 def get_notes():
     # retrieve user from database
-    a_user = db.session.query(User).filter_by(email='mnaeem1@uncc.edu')
+    a_user = db.session.query(User).filter_by(email='mnaeem1@uncc.edu').one()
     # retrieve notes from database
     my_notes = db.session.query(Note).all()
 
@@ -42,11 +38,11 @@ def get_notes():
 @app.route('/notes/<note_id>')
 def get_note(note_id):
     # retrieve user from database
-    a_user = db.session.query(User).filter_by(email='mnaeem1@uncc.edu')
+    a_user = db.session.query(User).filter_by(email='mnaeem1@uncc.edu').one()
     # retrieve note from database
-    my_notes = db.session.query(Note).filter_by(id=note_id)
+    my_notes = db.session.query(Note).filter_by(id=note_id).one()
 
-    return render_template('note.html', note=my_notes[int(note_id)])
+    return render_template('note.html', note=my_notes)
     # return "Welcome, Notes App User!"
 
 
@@ -55,7 +51,7 @@ def get_note(note_id):
 def new_note():
 
     # a_user = {'name': 'Mohammad', 'email': 'mogli@uncc.edu'}
-    a_user = db.session.query(User).filter_by(email='mnaeem1@uncc.edu')
+    a_user = db.session.query(User).filter_by(email='mnaeem1@uncc.edu').one()
     # check method used for request
     print('request method is', request.method)
     if request.method == 'POST':
@@ -68,7 +64,8 @@ def new_note():
         today = date.today()
         # format date mm/dd/yyy
         today = today.strftime("%m-%d-%y")
-        new_record = Note(title, next, today)
+
+        new_record = Note(title, text, today)
         db.session.add(new_record)
         db.session.commit()
 
@@ -78,7 +75,7 @@ def new_note():
     else:
         # GET request - show new note form
         # retrieve user from database
-        a_user = db.session.query(User).filter_by(email='mnaeem1@uncc.edu')
+        a_user = db.session.query(User).filter_by(email='mnaeem1@uncc.edu').one()
         return render_template('new.html', user=a_user)
 
 
