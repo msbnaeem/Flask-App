@@ -45,6 +45,15 @@ def get_note(note_id):
     return render_template('note.html', note=my_notes)
     # return "Welcome, Notes App User!"
 
+@app.route('/notes/edit/<note_id>')
+def update_note(note_id):
+    # GET request - show new note form to edit note
+    # retrieve user from database
+    a_user = db.session.query(User).filter_by(email='mnaeem1@uncc.edu').one()
+    # retrieve note from database
+    my_notes = db.session.query(Note).filter_by(id=note_id).one()
+
+    return render_template('note.html', note=my_notes)
 
 
 @app.route('/notes/new', methods=['GET', 'POST'])
